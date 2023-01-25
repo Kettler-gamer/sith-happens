@@ -28,6 +28,7 @@ export default function App() {
       <Header />
       <Menu handleClick={fetchTest} />
       <ContentPage
+        startUrl={startUrl}
         data={currentData}
         category={category}
         fetchFromUrl={fetchFromUrl}
