@@ -17,11 +17,21 @@ export default function App() {
     setCurrentData(data);
   }
 
+  async function fetchFromUrl(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    setCurrentData(data);
+  }
+
   return (
     <div className="app-container">
       <Header />
       <Menu handleClick={fetchTest} />
-      <ContentPage data={currentData} category={category} />
+      <ContentPage
+        data={currentData}
+        category={category}
+        fetchFromUrl={fetchFromUrl}
+      />
     </div>
   );
 }
