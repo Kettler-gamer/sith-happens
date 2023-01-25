@@ -14,6 +14,7 @@ export default function App() {
     setCurrentData(data);
   }
 
+
   return (
     <div>
       <Header />
