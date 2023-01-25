@@ -1,6 +1,6 @@
 export default function Starships(props) {
   return (
-    <div>
+    <div className="card">
       <h3>Name: {props.info.name}</h3>
       <p>Model: {props.info.model}</p>
       <p>Manufacturer: {props.info.manufacturer}</p>

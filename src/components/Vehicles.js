@@ -1,3 +1,3 @@
 export default function Vehicles(props) {
-  return <div></div>;
+  return <div className="card"></div>;
 }

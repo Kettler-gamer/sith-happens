@@ -18,7 +18,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <Header />
       <Menu handleClick={fetchTest} />
       <ContentPage data={currentData} category={category} />

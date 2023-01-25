@@ -1,6 +1,6 @@
 export default function People(props) {
   return (
-    <div>
+    <div className="card">
       <h3>Name: {props.info.name}</h3>
       <p>Gender: {props.info.gender}</p>
       <p>Height: {props.info.height}</p>

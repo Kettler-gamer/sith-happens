@@ -1,6 +1,6 @@
 export default function Menu(props) {
   return (
-    <div>
+    <div className="menu-container">
       <button
         onClick={() => {
           props.handleClick("people");

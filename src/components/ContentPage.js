@@ -11,5 +11,5 @@ export default function ContentPage(props) {
       <p></p>
     );
 
-  return <div>{cards}</div>;
+  return <div className="card-container">{cards}</div>;
 }

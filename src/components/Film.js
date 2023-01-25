@@ -7,7 +7,7 @@ export default function Film(props) {
     setCrawlToggle(!crawlToggle);
   }
   return (
-    <div>
+    <div className="card">
       <h3>Title: {props.info.title}</h3>
       <h4>Episode: {props.info.episode_id}</h4>
       {props.info.opening_crawl !== undefined && (
