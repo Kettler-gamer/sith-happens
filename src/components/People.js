@@ -1,4 +1,9 @@
+import React, { useState, useEffect, useRef } from "react";
+
 export default function People(props) {
+  const [starShips, setStarships] = useState(undefined);
+  const mounted = useRef(false);
+
   function getMovieTitle(id) {
     switch (id) {
       case 4:
@@ -17,6 +22,27 @@ export default function People(props) {
         return "Unkown";
     }
   }
+
+  async function getStarshipsName(link) {
+    const response = await fetch(link);
+    const data = await response.json();
+    return data.name;
+  }
+
+  async function loadStarships() {
+    const arr = [];
+    for (let link of props.info.starships) {
+      arr.push(await getStarshipsName(link));
+    }
+    setStarships(arr);
+  }
+
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      loadStarships();
+    }
+  });
 
   return (
     <div className="card">
@@ -42,6 +68,15 @@ export default function People(props) {
               </li>
             );
           })}
+        </ul>
+      )}
+      {props.info.starships !== undefined &&
+        props.info.starships.length > 0 && <p>Starships:</p>}
+      {props.info.starships !== undefined && starShips !== undefined && (
+        <ul>
+          {starShips.map((element, index) => (
+            <li key={element + index}>{element}</li>
+          ))}
         </ul>
       )}
     </div>
