@@ -10,23 +10,17 @@ export default function App() {
   const [currentData, setCurrentData] = useState(undefined);
   const [category, setCategory] = useState("");
 
-  async function fetchTest(category) {
-    const response = await fetch(startUrl + category);
-    const data = await response.json();
-    setCategory(category);
-    setCurrentData(data);
-  }
-
-  async function fetchFromUrl(url) {
+  async function fetchFromUrl(url, category) {
     const response = await fetch(url);
     const data = await response.json();
+    setCategory(category);
     setCurrentData(data);
   }
 
   return (
     <div className="app-container">
       <Header />
-      <Menu handleClick={fetchTest} />
+      <Menu startUrl={startUrl} handleClick={fetchFromUrl} />
       <ContentPage
         startUrl={startUrl}
         data={currentData}

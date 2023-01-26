@@ -15,7 +15,7 @@ export default function SearchBar(props) {
       searchValues.category
     }/?search=${searchValues.query.toLowerCase()}`;
 
-    props.fetchFromUrl(url);
+    props.fetchFromUrl(url, searchValues.category);
   }
 
   return (
