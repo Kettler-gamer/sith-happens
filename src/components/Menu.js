@@ -1,42 +1,55 @@
+import { Link } from "react-router-dom";
+
 export default function Menu(props) {
   return (
     <div className="menu-container">
-      <button
+      <Link
+        to={"/people"}
         onClick={() => {
           props.handleClick(props.startUrl + "people", "people");
         }}>
-        People
-      </button>
-      <button
+        <button>People</button>
+      </Link>
+
+      <Link
+        to={"/starships"}
         onClick={() => {
           props.handleClick(props.startUrl + "starships", "starships");
         }}>
-        Starships
-      </button>
-      <button
+        <button>Starships</button>
+      </Link>
+
+      <Link
+        to={"/vehicles"}
         onClick={() => {
           props.handleClick(props.startUrl + "vehicles", "vehicles");
         }}>
-        Vehicles
-      </button>
-      <button
+        <button>Vehicles</button>
+      </Link>
+
+      <Link
+        to={"/films"}
         onClick={() => {
           props.handleClick(props.startUrl + "films", "films");
         }}>
-        Films
-      </button>
-      <button
+        <button>Films</button>
+      </Link>
+
+      <Link
+        to={"/planets"}
         onClick={() => {
           props.handleClick(props.startUrl + "planets", "planets");
         }}>
-        Planets
-      </button>
-      <button
+        <button>Planets</button>
+      </Link>
+
+      <Link
+        to={"/species"}
         onClick={() => {
           props.handleClick(props.startUrl + "species", "species");
         }}>
-        Species
-      </button>
+        <button>Species</button>
+      </Link>
     </div>
   );
 }

@@ -29,19 +29,21 @@ export default function People(props) {
       <p>Eye color: {props.info.eye_color}</p>
       <p>Birth year: {props.info.birth_year}</p>
       <p>Films:</p>
-      <ul>
-        {props.info.films.map((element, index) => {
-          return (
-            <li key={`${index}${props.info.name}`}>
-              {getMovieTitle(
-                Number(
-                  element.substring(element.length - 2, element.length - 1)
-                )
-              )}
-            </li>
-          );
-        })}
-      </ul>
+      {props.info.films !== undefined && (
+        <ul>
+          {props.info.films.map((element, index) => {
+            return (
+              <li key={`${index}${props.info.name}`}>
+                {getMovieTitle(
+                  Number(
+                    element.substring(element.length - 2, element.length - 1)
+                  )
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }

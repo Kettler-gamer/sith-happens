@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SearchBar(props) {
-  const [searchValues, setSearchValues] = useState({ query: "", category: "" });
+  const [searchValues, setSearchValues] = useState({
+    query: "",
+    category: "people",
+  });
 
   function onChange(event) {
     setSearchValues((prevValue) => {
@@ -15,19 +19,19 @@ export default function SearchBar(props) {
       searchValues.category
     }/?search=${searchValues.query.toLowerCase()}`;
 
-    props.fetchFromUrl(url, searchValues.category);
+    props.fetchFromUrl(url);
   }
 
   return (
     <div className="search-bar">
-      <select className="select"
+      <select
+        className="select"
         onChange={(event) => {
           setSearchValues((prevValue) => {
             return { ...prevValue, category: event.target.value };
           });
           console.log(searchValues);
         }}>
-        <option value={""}>select an option...</option>
         <option value={"people"}>People</option>
         <option value={"starships"}>Starships</option>
         <option value={"vehicles"}>Vehicles</option>
@@ -44,7 +48,11 @@ export default function SearchBar(props) {
         value={searchValues.name}
         type="text"
       />
-      <button className="search-button" onClick={onSearchClick}>Search</button>
+      <Link to={"../" + searchValues.category}>
+        <button className="search-button" onClick={onSearchClick}>
+          Search
+        </button>
+      </Link>
     </div>
   );
 }

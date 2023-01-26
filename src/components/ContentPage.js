@@ -2,12 +2,11 @@ import Card from "./Card";
 import SearchBar from "./SearchBar";
 
 export default function ContentPage(props) {
-  console.log(props.data);
-
   const arrows = props.data !== undefined && (
     <div>
       {props.data.previous !== null && (
-        <button className="arrow-button"
+        <button
+          className="arrow-button"
           onClick={() => {
             props.fetchFromUrl(props.data.previous);
           }}>
@@ -15,15 +14,19 @@ export default function ContentPage(props) {
         </button>
       )}
       {props.data.next !== null && (
-        <button className="arrow-button"
+        <button
+          className="arrow-button"
           onClick={() => {
             props.fetchFromUrl(props.data.next);
           }}>
           &raquo;
         </button>
       )}
-      <p>Results: {props.data.count}</p>
     </div>
+  );
+
+  const results = props.data !== undefined && (
+    <p>Results: {props.data.count}</p>
   );
 
   const cards =
@@ -39,9 +42,10 @@ export default function ContentPage(props) {
   return (
     <div className="card-container">
       <SearchBar startUrl={props.startUrl} fetchFromUrl={props.fetchFromUrl} />
-      {arrows}
-      {cards}
-      {arrows}
+      {!props.loader && arrows}
+      {!props.loader && results}
+      {!props.loader && cards}
+      {!props.loader && arrows}
     </div>
   );
 }
