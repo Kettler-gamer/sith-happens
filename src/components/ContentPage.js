@@ -2,7 +2,7 @@ import Card from "./Card";
 import SearchBar from "./SearchBar";
 
 export default function ContentPage(props) {
-  console.log(props.data);
+  // console.log(props.data);
 
   const arrows = props.data !== undefined && (
     <div>
