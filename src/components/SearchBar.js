@@ -20,7 +20,7 @@ export default function SearchBar(props) {
 
   return (
     <div className="search-bar">
-      <select
+      <select className="select"
         onChange={(event) => {
           setSearchValues((prevValue) => {
             return { ...prevValue, category: event.target.value };
@@ -36,13 +36,15 @@ export default function SearchBar(props) {
         <option value={"species"}>Species</option>
       </select>
       <input
+        className="search-input"
+        placeholder="search for star wars stuff.."
         onChange={(event) => {
           onChange(event, "query");
         }}
         value={searchValues.name}
         type="text"
       />
-      <button onClick={onSearchClick}>Search</button>
+      <button className="search-button" onClick={onSearchClick}>Search</button>
     </div>
   );
 }

@@ -7,19 +7,19 @@ export default function ContentPage(props) {
   const arrows = props.data !== undefined && (
     <div>
       {props.data.previous !== null && (
-        <button
+        <button className="arrow-button"
           onClick={() => {
             props.fetchFromUrl(props.data.previous);
           }}>
-          Previous
+          &laquo;
         </button>
       )}
       {props.data.next !== null && (
-        <button
+        <button className="arrow-button"
           onClick={() => {
             props.fetchFromUrl(props.data.next);
           }}>
-          Next
+          &raquo;
         </button>
       )}
       <p>Results: {props.data.count}</p>
