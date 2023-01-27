@@ -9,27 +9,26 @@ const startUrl = "https://swapi.dev/api/";
 export default function App(props) {
   const [currentData, setCurrentData] = useState(undefined);
   const [loader, setLoader] = useState(false);
-  const [cache, setCache] = useState([]);
   const mounted = useRef(false);
 
   async function fetchFromUrl(url) {
     setLoader(true);
     const check = isUrlInCache(url);
     if (check.found) {
-      setCurrentData(check.data);
+      setCurrentData(JSON.parse(check.data));
     } else {
       const response = await fetch(url);
       const data = await response.json();
       setCurrentData(data);
-      setCache((prevValue) => [...prevValue, { url: url, data: data }]);
+      window.localStorage.setItem(url, JSON.stringify(data));
     }
     setLoader(false);
   }
 
   function isUrlInCache(url) {
-    for (let element of cache) {
-      if (element.url === url) {
-        return { found: true, data: element.data };
+    for (let element in window.localStorage) {
+      if (element === url) {
+        return { found: true, data: window.localStorage[element] };
       }
     }
     return { found: false };
@@ -41,6 +40,7 @@ export default function App(props) {
       if (props.category !== "") {
         fetchFromUrl(startUrl + props.category);
       }
+      // window.localStorage.clear();
     }
   });
 

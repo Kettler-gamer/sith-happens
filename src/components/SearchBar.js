@@ -11,7 +11,6 @@ export default function SearchBar(props) {
     setSearchValues((prevValue) => {
       return { ...prevValue, query: event.target.value };
     });
-    console.log(searchValues);
   }
 
   function onSearchClick() {
@@ -30,7 +29,6 @@ export default function SearchBar(props) {
           setSearchValues((prevValue) => {
             return { ...prevValue, category: event.target.value };
           });
-          console.log(searchValues);
         }}>
         <option value={"people"}>People</option>
         <option value={"starships"}>Starships</option>
