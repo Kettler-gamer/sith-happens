@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   font-family: "Dela Gothic One", cursive;
+  text-shadow: -1px -1px 3px black;
 }
 
 *,
@@ -121,8 +122,8 @@ input[type="text"]:focus,
 /* Loader icon */
 
 .ring-container {
-  position: absolute;
-  top: 20em;
+  position: relative;
+  top: 5em;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -218,7 +219,10 @@ input[type="text"]:focus,
   position: absolute;
   color: #fff;
   font-size: 1.5em;
-  font-family: consolas;
   bottom: -130px;
   letter-spacing: 0.15em;
+}
+
+ul li {
+  list-style-type: none;
 }

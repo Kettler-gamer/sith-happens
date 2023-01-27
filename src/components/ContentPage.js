@@ -1,5 +1,6 @@
 import Card from "./Card";
 import SearchBar from "./SearchBar";
+import Loader from "./Loader";
 
 export default function ContentPage(props) {
   const arrows = props.data !== undefined && (
@@ -42,6 +43,7 @@ export default function ContentPage(props) {
   return (
     <div className="card-container">
       <SearchBar startUrl={props.startUrl} fetchFromUrl={props.fetchFromUrl} />
+      {props.loader && <Loader />}
       {!props.loader && arrows}
       {!props.loader && results}
       {!props.loader && cards}
