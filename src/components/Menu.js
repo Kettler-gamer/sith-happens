@@ -4,7 +4,7 @@ export default function Menu(props) {
   return (
     <div className="menu-container">
       <Link
-        to={"/people"}
+        to={"/sith-happens/people"}
         onClick={() => {
           props.handleClick(props.startUrl + "people", "people");
         }}>
@@ -12,7 +12,7 @@ export default function Menu(props) {
       </Link>
 
       <Link
-        to={"/starships"}
+        to={"/sith-happens/starships"}
         onClick={() => {
           props.handleClick(props.startUrl + "starships", "starships");
         }}>
@@ -20,7 +20,7 @@ export default function Menu(props) {
       </Link>
 
       <Link
-        to={"/vehicles"}
+        to={"/sith-happens/vehicles"}
         onClick={() => {
           props.handleClick(props.startUrl + "vehicles", "vehicles");
         }}>
@@ -28,7 +28,7 @@ export default function Menu(props) {
       </Link>
 
       <Link
-        to={"/films"}
+        to={"/sith-happens/films"}
         onClick={() => {
           props.handleClick(props.startUrl + "films", "films");
         }}>
@@ -36,7 +36,7 @@ export default function Menu(props) {
       </Link>
 
       <Link
-        to={"/planets"}
+        to={"/sith-happens/planets"}
         onClick={() => {
           props.handleClick(props.startUrl + "planets", "planets");
         }}>
@@ -44,7 +44,7 @@ export default function Menu(props) {
       </Link>
 
       <Link
-        to={"/species"}
+        to={"/sith-happens/species"}
         onClick={() => {
           props.handleClick(props.startUrl + "species", "species");
         }}>
