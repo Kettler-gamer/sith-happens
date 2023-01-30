@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/sith-happens/static/css/main.5fd72b67.css",
-    "main.js": "/sith-happens/static/js/main.2130fcf5.js",
+    "main.css": "/sith-happens/static/css/main.ac76e871.css",
+    "main.js": "/sith-happens/static/js/main.a99cec13.js",
     "index.html": "/sith-happens/index.html",
-    "main.5fd72b67.css.map": "/sith-happens/static/css/main.5fd72b67.css.map",
-    "main.2130fcf5.js.map": "/sith-happens/static/js/main.2130fcf5.js.map"
+    "main.ac76e871.css.map": "/sith-happens/static/css/main.ac76e871.css.map",
+    "main.a99cec13.js.map": "/sith-happens/static/js/main.a99cec13.js.map"
   },
   "entrypoints": [
-    "static/css/main.5fd72b67.css",
-    "static/js/main.2130fcf5.js"
+    "static/css/main.ac76e871.css",
+    "static/js/main.a99cec13.js"
   ]
 }
