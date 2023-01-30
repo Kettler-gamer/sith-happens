@@ -46,16 +46,17 @@ export default function SearchBar(props) {
         <option value={"planets"}>Planets</option>
         <option value={"species"}>Species</option>
       </select>
-      <input
-        className="search-input"
-        placeholder="search for star wars stuff.."
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        name="query"
-        value={searchValues.query}
-        type="text"
-      />
+      
       <Link to={"/sith-happens/" + searchValues.category}>
+        <input
+          className="search-input"
+          placeholder="search for star wars stuff.."
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          name="query"
+          value={searchValues.query}
+          type="text"
+        />
         <button className="search-button" onClick={onSearchClick}>
           Search
         </button>
