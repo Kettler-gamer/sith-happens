@@ -7,10 +7,20 @@ export default function SearchBar(props) {
     category: "people",
   });
 
-  function onChange(event) {
-    setSearchValues((prevValue) => {
-      return { ...prevValue, query: event.target.value };
-    });
+  function handleChange(event) {
+    const {name, value} = event.target;
+    setSearchValues(prevSearchValues => {
+      return {
+        ...prevSearchValues,
+        [name]: value
+      }
+    })
+  }
+
+  function handleKeyDown(event) {
+    if(event.code === "Enter") {
+      onSearchClick();
+    }
   }
 
   function onSearchClick() {
@@ -25,11 +35,10 @@ export default function SearchBar(props) {
     <div className="search-bar">
       <select
         className="select"
-        onChange={(event) => {
-          setSearchValues((prevValue) => {
-            return { ...prevValue, category: event.target.value };
-          });
-        }}>
+        onChange={handleChange} 
+        value={searchValues.category}
+        name="category"
+        >
         <option value={"people"}>People</option>
         <option value={"starships"}>Starships</option>
         <option value={"vehicles"}>Vehicles</option>
@@ -40,10 +49,10 @@ export default function SearchBar(props) {
       <input
         className="search-input"
         placeholder="search for star wars stuff.."
-        onChange={(event) => {
-          onChange(event, "query");
-        }}
-        value={searchValues.name}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        name="query"
+        value={searchValues.query}
         type="text"
       />
       <Link to={"/sith-happens/" + searchValues.category}>
