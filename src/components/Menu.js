@@ -6,7 +6,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/people"}
         onClick={() => {
-          props.handleClick(props.startUrl + "people", "people");
+          props.handleClick(props.startUrl + "people/?page=1", "people");
         }}>
         <button>People</button>
       </Link>
@@ -14,7 +14,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/starships"}
         onClick={() => {
-          props.handleClick(props.startUrl + "starships", "starships");
+          props.handleClick(props.startUrl + "starships/?page=1", "starships");
         }}>
         <button>Starships</button>
       </Link>
@@ -22,7 +22,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/vehicles"}
         onClick={() => {
-          props.handleClick(props.startUrl + "vehicles", "vehicles");
+          props.handleClick(props.startUrl + "vehicles/?page=1", "vehicles");
         }}>
         <button>Vehicles</button>
       </Link>
@@ -30,7 +30,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/films"}
         onClick={() => {
-          props.handleClick(props.startUrl + "films", "films");
+          props.handleClick(props.startUrl + "films/?page=1", "films");
         }}>
         <button>Films</button>
       </Link>
@@ -38,7 +38,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/planets"}
         onClick={() => {
-          props.handleClick(props.startUrl + "planets", "planets");
+          props.handleClick(props.startUrl + "planets/?page=1", "planets");
         }}>
         <button>Planets</button>
       </Link>
@@ -46,7 +46,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/species"}
         onClick={() => {
-          props.handleClick(props.startUrl + "species", "species");
+          props.handleClick(props.startUrl + "species/?page=1", "species");
         }}>
         <button>Species</button>
       </Link>

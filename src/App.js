@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import NoPage from "./components/NoPage";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import ContentPage from "./components/ContentPage";
@@ -6,9 +7,10 @@ import "./style.css";
 
 const startUrl = "https://swapi.dev/api/";
 
-export default function App(props) {
+export default function App() {
   const [currentData, setCurrentData] = useState(undefined);
   const [loader, setLoader] = useState(false);
+  const [pageFound, setPageFound] = useState(false);
   const mounted = useRef(false);
 
   async function fetchFromUrl(url) {
@@ -34,27 +36,52 @@ export default function App(props) {
     return { found: false };
   }
 
+  function refreshData() {
+    if (
+      !window.location.pathname.endsWith("sith-happens") &&
+      !window.location.pathname.endsWith("sith-happens/")
+    ) {
+      const arr = window.location.pathname.split("/");
+      switch (arr[arr.length - 1]) {
+        case "people":
+        case "starships":
+        case "vehicles":
+        case "films":
+        case "planets":
+        case "species":
+          fetchFromUrl(startUrl + arr[arr.length - 1] + "/?page=1");
+          setPageFound(true);
+          break;
+        default:
+          setPageFound(false);
+      }
+    } else {
+      setPageFound(true);
+      setCurrentData(undefined);
+    }
+  }
+
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;
-      if (props.category !== "") {
-        fetchFromUrl(startUrl + props.category);
-      }
-      // window.localStorage.clear();
+      window.addEventListener("popstate", refreshData);
+      refreshData();
     }
   });
 
   return (
     <div className="app-container">
       <Header />
-      <Menu startUrl={startUrl} handleClick={fetchFromUrl} />
-      <ContentPage
-        loader={loader}
-        startUrl={startUrl}
-        data={currentData}
-        category={props.category}
-        fetchFromUrl={fetchFromUrl}
-      />
+      {!pageFound && <NoPage setPageFound={setPageFound} />}
+      {pageFound && <Menu startUrl={startUrl} handleClick={fetchFromUrl} />}
+      {pageFound && (
+        <ContentPage
+          loader={loader}
+          startUrl={startUrl}
+          data={currentData}
+          fetchFromUrl={fetchFromUrl}
+        />
+      )}
     </div>
   );
 }

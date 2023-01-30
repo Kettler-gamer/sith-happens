@@ -1,22 +1,28 @@
 import React from "react";
 import People from "./People";
 import Starships from "./Starships";
+import { Routes, Route } from "react-router-dom";
 // import Vehicles from "./Vehicles";
 import Film from "./Film";
 import Planets from "./Planets";
 import Species from "./Species";
-// import Test from "./Test";
 
 export default function Card(props) {
-  return props.category === "people" ? (
-    <People info={props.info} />
-  ) : props.category === "starships" || props.category === "vehicles" ? (
-    <Starships info={props.info} />
-  ) : props.category === "films" ? (
-    <Film info={props.info} />
-  ) : props.category === "planets" ? (
-    <Planets info={props.info} />
-  ) : (
-    props.category === "species" && <Species info={props.info} />
+  return (
+    <Routes>
+      <Route path="/sith-happens/">
+        <Route index element={null} />
+        <Route path="people" element={<People info={props.info} />}></Route>
+        <Route
+          path="starships"
+          element={<Starships info={props.info} />}></Route>
+        <Route
+          path="vehicles"
+          element={<Starships info={props.info} />}></Route>
+        <Route path="films" element={<Film info={props.info} />}></Route>
+        <Route path="planets" element={<Planets info={props.info} />}></Route>
+        <Route path="species" element={<Species info={props.info} />}></Route>
+      </Route>
+    </Routes>
   );
 }

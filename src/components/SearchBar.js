@@ -46,7 +46,7 @@ export default function SearchBar(props) {
         value={searchValues.name}
         type="text"
       />
-      <Link to={"../" + searchValues.category}>
+      <Link to={"/sith-happens/" + searchValues.category}>
         <button className="search-button" onClick={onSearchClick}>
           Search
         </button>

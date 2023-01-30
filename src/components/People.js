@@ -27,13 +27,27 @@ export default function People(props) {
   async function getNameFromLink(link) {
     const response = await fetch(link);
     const data = await response.json();
+    window.localStorage.setItem(link, JSON.stringify(data));
     return data.name;
+  }
+
+  function isUrlInCache(url) {
+    for (let element in window.localStorage) {
+      if (element === url) {
+        return { found: true, data: window.localStorage[element] };
+      }
+    }
+    return { found: false };
   }
 
   async function getNamesFromList(array, callback) {
     const arr = [];
     for (let link of array) {
-      arr.push(await getNameFromLink(link));
+      if (isUrlInCache(link).found) {
+        arr.push(JSON.parse(window.localStorage[link]).name);
+      } else {
+        arr.push(await getNameFromLink(link));
+      }
     }
     callback(arr);
   }
@@ -81,8 +95,9 @@ export default function People(props) {
           ))}
         </ul>
       )}
-      {props.info.vehicles !== undefined &&
-        props.info.vehicles.length > 0 && <p>vehicles:</p>}
+      {props.info.vehicles !== undefined && props.info.vehicles.length > 0 && (
+        <p>Vehicles:</p>
+      )}
       {props.info.vehicles !== undefined && vehicles !== undefined && (
         <ul>
           {vehicles.map((element, index) => (

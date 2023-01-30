@@ -33,11 +33,11 @@ export default function ContentPage(props) {
   const cards =
     props.data !== undefined && Array.isArray(props.data.results)
       ? props.data.results.map((element, index) => (
-          <Card key={index} category={props.category} info={element} />
+          <Card key={index} info={element} />
         ))
       : props.data !== undefined &&
         props.data.results.results.map((element, index) => (
-          <Card key={index} category={props.category} info={element} />
+          <Card key={index} info={element} />
         ));
 
   return (
