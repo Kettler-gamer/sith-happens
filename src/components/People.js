@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 export default function People(props) {
   const [starShips, setStarships] = useState(undefined);
   const [vehicles, setVehicles] = useState(undefined);
-  const mounted = useRef(false);
 
   function getMovieTitle(id) {
     switch (id) {
@@ -40,7 +39,7 @@ export default function People(props) {
     return { found: false };
   }
 
-  async function getNamesFromList(array, callback) {
+  const getNamesFromList = useCallback(async (array, callback) => {
     const arr = [];
     for (let link of array) {
       if (isUrlInCache(link).found) {
@@ -50,15 +49,30 @@ export default function People(props) {
       }
     }
     callback(arr);
-  }
-  //eslint-disable-next-line
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-      getNamesFromList(props.info.starships, setStarships);
+  }, []);
+
+  function reGetVehiclesListInfo() {
+    if (Array.isArray(props.info.vehicles)) {
       getNamesFromList(props.info.vehicles, setVehicles);
     }
-  });
+    return null;
+  }
+
+  function reGetStarshipsListInfo() {
+    if (Array.isArray(props.info.starships)) {
+      getNamesFromList(props.info.starships, setStarships);
+    }
+    return null;
+  }
+
+  useEffect(() => {
+    if (Array.isArray(props.info.starships)) {
+      getNamesFromList(props.info.starships, setStarships);
+    }
+    if (Array.isArray(props.info.vehicles)) {
+      getNamesFromList(props.info.vehicles, setVehicles);
+    }
+  }, [getNamesFromList, props.info.starships, props.info.vehicles]);
 
   return (
     <div className="card">
@@ -90,6 +104,8 @@ export default function People(props) {
         props.info.starships.length > 0 && <p>Starships:</p>}
       {props.info.starships !== undefined && starShips !== undefined && (
         <ul>
+          {props.info.starships.length !== starShips.length &&
+            reGetStarshipsListInfo()}
           {starShips.map((element, index) => (
             <li key={element + index}>{element}</li>
           ))}
@@ -100,6 +116,8 @@ export default function People(props) {
       )}
       {props.info.vehicles !== undefined && vehicles !== undefined && (
         <ul>
+          {props.info.vehicles.length !== vehicles.length &&
+            reGetVehiclesListInfo()}
           {vehicles.map((element, index) => (
             <li key={element + index}>{element}</li>
           ))}
