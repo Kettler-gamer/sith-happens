@@ -35,7 +35,7 @@ export default function App() {
     }
     return { found: false };
   }
-
+  //This code runs when you navigate with either changing the url in the browser or going backwards/forward
   function refreshData() {
     if (
       !window.location.pathname.endsWith("sith-happens") &&
@@ -60,7 +60,7 @@ export default function App() {
       setCurrentData(undefined);
     }
   }
-
+  //this code only runs once, adds event listener for moving backwards and forward
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;

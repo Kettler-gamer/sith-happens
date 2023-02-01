@@ -5,8 +5,8 @@ export default function Menu(props) {
     <div className="menu-container">
       <Link
         to={"/sith-happens/people"}
-        onClick={() => {
-          props.handleClick(props.startUrl + "people/?page=1", "people");
+        onClick={() => {     ///?page=1 to make localstorage work when switching pages (it thinks "/people" is a different page than "people/?page=1")
+          props.handleClick(props.startUrl + "people/?page=1");
         }}>
         <button>People</button>
       </Link>
@@ -14,7 +14,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/starships"}
         onClick={() => {
-          props.handleClick(props.startUrl + "starships/?page=1", "starships");
+          props.handleClick(props.startUrl + "starships/?page=1");
         }}>
         <button>Starships</button>
       </Link>
@@ -22,7 +22,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/vehicles"}
         onClick={() => {
-          props.handleClick(props.startUrl + "vehicles/?page=1", "vehicles");
+          props.handleClick(props.startUrl + "vehicles/?page=1");
         }}>
         <button>Vehicles</button>
       </Link>
@@ -30,7 +30,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/films"}
         onClick={() => {
-          props.handleClick(props.startUrl + "films/?page=1", "films");
+          props.handleClick(props.startUrl + "films/?page=1");
         }}>
         <button>Films</button>
       </Link>
@@ -38,7 +38,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/planets"}
         onClick={() => {
-          props.handleClick(props.startUrl + "planets/?page=1", "planets");
+          props.handleClick(props.startUrl + "planets/?page=1");
         }}>
         <button>Planets</button>
       </Link>
@@ -46,7 +46,7 @@ export default function Menu(props) {
       <Link
         to={"/sith-happens/species"}
         onClick={() => {
-          props.handleClick(props.startUrl + "species/?page=1", "species");
+          props.handleClick(props.startUrl + "species/?page=1");
         }}>
         <button>Species</button>
       </Link>
