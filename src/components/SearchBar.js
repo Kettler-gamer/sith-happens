@@ -1,25 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SearchBar(props) {
+  const navigate = useNavigate();
   const [searchValues, setSearchValues] = useState({
     query: "",
     category: "people",
   });
 
   function handleChange(event) {
-    const {name, value} = event.target;
-    setSearchValues(prevSearchValues => {
+    const { name, value } = event.target;
+    setSearchValues((prevSearchValues) => {
       return {
         ...prevSearchValues,
-        [name]: value
-      }
-    })
+        [name]: value,
+      };
+    });
   }
 
   function handleKeyDown(event) {
-    if(event.code === "Enter") {
+    if (event.code === "Enter") {
       onSearchClick();
+      navigate("/sith-happens/" + searchValues.category);
     }
   }
 
@@ -35,10 +37,9 @@ export default function SearchBar(props) {
     <div className="search-bar">
       <select
         className="select"
-        onChange={handleChange} 
+        onChange={handleChange}
         value={searchValues.category}
-        name="category"
-        >
+        name="category">
         <option value={"people"}>People</option>
         <option value={"starships"}>Starships</option>
         <option value={"vehicles"}>Vehicles</option>
@@ -46,17 +47,17 @@ export default function SearchBar(props) {
         <option value={"planets"}>Planets</option>
         <option value={"species"}>Species</option>
       </select>
-      
+
+      <input
+        className="search-input"
+        placeholder="search for star wars stuff.."
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        name="query"
+        value={searchValues.query}
+        type="text"
+      />
       <Link to={"/sith-happens/" + searchValues.category}>
-        <input
-          className="search-input"
-          placeholder="search for star wars stuff.."
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          name="query"
-          value={searchValues.query}
-          type="text"
-        />
         <button className="search-button" onClick={onSearchClick}>
           Search
         </button>
