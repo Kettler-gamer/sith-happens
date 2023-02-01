@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBar(props) {
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ export default function SearchBar(props) {
   function handleKeyDown(event) {
     if (event.code === "Enter") {
       onSearchClick();
-      navigate("/sith-happens/" + searchValues.category);
     }
   }
 
@@ -31,6 +30,7 @@ export default function SearchBar(props) {
     }/?search=${searchValues.query.toLowerCase()}`;
 
     props.fetchFromUrl(url);
+    navigate("/sith-happens/" + searchValues.category);
   }
 
   return (
@@ -57,11 +57,9 @@ export default function SearchBar(props) {
         value={searchValues.query}
         type="text"
       />
-      <Link to={"/sith-happens/" + searchValues.category}>
-        <button className="search-button" onClick={onSearchClick}>
-          Search
-        </button>
-      </Link>
+      <button className="search-button" onClick={onSearchClick}>
+        Search
+      </button>
     </div>
   );
 }
